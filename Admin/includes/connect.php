@@ -1,12 +1,13 @@
 <?php
 
 // connect to my database
+// 
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-
-$servername = "localhost";
-$username = "root";
-$password = "p@55w0rd";
-$database = "ljstores";
+$servername = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
 
 global $connection;
 $connection = @mysqli_connect($servername, $username, $password) or die('Connection could not be made to the SQL Server. Please report this system error at <font color="blue">info@ljstores.com</font>');
